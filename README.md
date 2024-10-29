@@ -58,3 +58,45 @@ plt.xlabel('Día de la Semana', fontsize=14)
 plt.ylabel('Promedio de Cuenta Total', fontsize=14)
 
 plt.show()
+```
+# Calcular Promedio y Visualizar con Seaborn
+
+## 1. Importar las librerías necesarias
+
+Primero, importamos las bibliotecas necesarias:
+
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+# Crear un DataFrame de ejemplo
+data = {
+    'día': ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+    'total_facturado': [150, 200, 300, 400, 250]
+}
+
+df = pd.DataFrame(data)
+
+promedio = df['total_facturado'].mean()
+print(f'El promedio de total_facturado es: {promedio}')
+
+# Configurar el estilo
+sns.set_style("whitegrid")
+
+# Crear un gráfico de barras
+plt.figure(figsize=(8, 5))
+sns.barplot(x='día', y='total_facturado', data=df, palette='pastel')
+
+# Añadir una línea que indique el promedio
+plt.axhline(y=promedio, color='red', linestyle='--', label='Promedio')
+plt.text(0, promedio + 10, f'Promedio: {promedio:.2f}', color='red')
+
+# Títulos y etiquetas
+plt.title('Total Facturado por Día', fontsize=16)
+plt.xlabel('Día de la Semana', fontsize=14)
+plt.ylabel('Total Facturado', fontsize=14)
+plt.legend()
+
+plt.show()
